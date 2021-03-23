@@ -1,0 +1,9 @@
+.taskContainer {
+    margin: 20px
+}
+
+.rainbowText {
+    background-image: linear-gradient(to left,  lightblue, yellow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
