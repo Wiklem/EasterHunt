@@ -4,6 +4,7 @@ import Map from "../../../components/Map/Map";
 import MapDistance from "../../../components/Map/MapDistance";
 import MapInfo from "../../../components/Map/MapInfo";
 import TaskView from "./TaskView";
+import { Card } from "antd";
 
 interface IdistanceValues {
   text: string;
@@ -11,7 +12,7 @@ interface IdistanceValues {
 }
 
 const TaskRenderer: React.FC<ITask> = (props) => {
-  const { number, location, mapHint } = props;
+  const { location, mapHint } = props;
   const [distanceValues, setDistanceValues] = React.useState<IdistanceValues>();
   const [distance, setDistance] = React.useState<any>();
   const [showTask, setShowTask] = React.useState(false);
@@ -42,11 +43,15 @@ const TaskRenderer: React.FC<ITask> = (props) => {
   );
 
   return (
-    <div>
-      <strong>Oppgave {number}</strong>
-      {showTask ? <TaskView task={props} /> : distanceToUnlock()}
-      {renderMap()}
-    </div>
+    <Card title={<strong>Oppgave {props.number}</strong>}>
+      {showTask ? (
+        <TaskView task={props} />
+      ) : (
+        <>
+          {distanceToUnlock()} {renderMap()}
+        </>
+      )}
+    </Card>
   );
 };
 

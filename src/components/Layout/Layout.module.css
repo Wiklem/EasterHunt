@@ -1,14 +1,12 @@
 .header {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 15px;
-    -webkit-box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.75);
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.75);
+
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
+
 .layout {
-    background-color: #282c34;
+    background-image: url(../../assets/bg.jpg);
     min-height: 100vh;
     font-size: calc(10px + 1vmin);
     color: white;
@@ -17,7 +15,6 @@
 
 .container {
     padding-top: 20px;
-    background-color: #282c34;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -25,8 +22,33 @@
     color: white;
 }
 
-.rainbowText {
-    background-image: linear-gradient(to left,  green, yellow, orange, red);
+
+
+.rainbow {
+    text-align: center;
+    text-decoration: underline;
+    font-size: 32px;
+    font-family: monospace;
+    letter-spacing: 5px;
+    background: linear-gradient(to right, #ECC000, #62B7BE , #00ff00, #ff3399);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1px;
+    color: transparent;
+    animation: rainbow_animation 10s ease-in-out infinite;
+    background-size: 400% 100%;
+}
+
+@keyframes rainbow_animation {
+    0% {
+        -webkit-transform:rotate(2deg);
+        background-position: 0 0;
+    }
+    50% {
+        -webkit-transform:rotate(-2deg);
+        background-position: 100% 0;
+    }
+    100% {
+        -webkit-transform:rotate(2deg);
+        background-position: 0 0;
+    }
 }

@@ -12,10 +12,13 @@ const TaskView: React.FC<ITaskView> = ({ task }) => {
   const [answer, setAnswer] = React.useState<string | undefined>(undefined);
 
   const correctView = () => (
-    <div>
+    <div className={styles.answerLabel}>
       <Alert message={answer + " er riktig"} type="success" showIcon />
       <div>
         <Button
+          className={styles.nextButton}
+          type="primary"
+          block
           onClick={() => {
             let nextVal = parseInt(task.number);
             nextVal++;
@@ -29,13 +32,13 @@ const TaskView: React.FC<ITaskView> = ({ task }) => {
   );
 
   const incorrectView = () => (
-    <div>
+    <div className={styles.answerLabel}>
       <Alert message={answer + " er feil"} type="error" showIcon />
     </div>
   );
 
   return (
-    <div className={styles.taskContainer}>
+    <>
       <div>{task.taskInfo}</div>
       <Input.Search
         allowClear
@@ -49,7 +52,7 @@ const TaskView: React.FC<ITaskView> = ({ task }) => {
           ? correctView()
           : incorrectView()
         : null}
-    </div>
+    </>
   );
 };
 

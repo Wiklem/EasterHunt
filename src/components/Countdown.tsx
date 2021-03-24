@@ -1,6 +1,7 @@
 import React from "react";
 import Loading from "./Loading";
 import { timeDifference } from "./Utils";
+import { Alert } from "antd";
 
 interface ICountdown {
   readyCallback: (state: boolean) => void;
@@ -30,16 +31,23 @@ const Countdown: React.FC<ICountdown> = ({ readyCallback }) => {
   if (!timeLeft) return <Loading />;
 
   return (
-    <div>
-      Der er{" "}
-      {timeLeft &&
-        Object.keys(timeLeft).map((key) => (
-          <span key={key}>
-            {timeLeft[key]} {key}{" "}
-          </span>
-        ))}
-      igjen!
-    </div>
+    <Alert
+      message={
+        <div>
+          Der er{" "}
+          {timeLeft &&
+            Object.keys(timeLeft).map((key) => (
+              <span key={key}>
+                {timeLeft[key]} {key}{" "}
+              </span>
+            ))}
+          igjen!
+        </div>
+      }
+      description="Er du klar for den store påskejakten?"
+      type="info"
+      showIcon
+    />
   );
 };
 

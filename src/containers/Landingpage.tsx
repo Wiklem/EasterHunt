@@ -22,8 +22,8 @@ const Landingpage: React.FC<ILandingpage> = ({ dev }) => {
 
   const handleOk = () => {
     setError("");
-    if (name === "Mina") {
-      localStorage.setItem("name", name);
+    if (name.toLowerCase() === "mina") {
+      localStorage.setItem("name", name.toLowerCase());
       setIsModalVisible(false);
     } else {
       setError("Du er desverre ikke med i påskejakten!");
@@ -34,7 +34,7 @@ const Landingpage: React.FC<ILandingpage> = ({ dev }) => {
     setIsModalVisible(false);
   };
 
-  if (localStorage.getItem("name") === "Mina") {
+  if (localStorage.getItem("name") === "mina") {
     return <TaskList />;
   }
   const startHunt = () => (
