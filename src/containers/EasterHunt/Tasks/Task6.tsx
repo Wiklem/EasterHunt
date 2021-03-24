@@ -1,26 +1,26 @@
 import React from "react";
 import TaskRenderer from "../TaskRenderer/TaskRenderer";
-import math from "../../../assets/tasks/math.jpg";
+import hollywood from "../../../assets/tasks/hollywood.jpg";
 
-const Task2: React.FC = () => {
+const Task3: React.FC = () => {
   const task = () => (
     <div>
-      <p>Hva er 6 * 7 ?</p>
+      <p>Hva heter den verdenskjente filmbyen i USA?</p>
     </div>
   );
 
-  const correct = "42";
+  const correct = "hollywood";
 
   return (
     <TaskRenderer
-      number={"2"}
+      number={"6"}
       taskInfo={task()}
       correctAnswer={correct}
       location={{ lat: 58.183250300000005, lng: 8.0929092 }}
       mapHint={"Ingen hint!"}
-      cover={<img src={math} alt={"Oppgave bilde"} />}
+      cover={<img src={hollywood} alt={"Oppgave bilde"} />}
     />
   );
 };
 
-export default Task2;
+export default Task3;

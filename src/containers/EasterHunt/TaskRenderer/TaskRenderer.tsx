@@ -43,7 +43,7 @@ const TaskRenderer: React.FC<ITask> = (props) => {
   );
 
   return (
-    <Card title={<strong>Oppgave {props.number}</strong>}>
+    <Card title={<strong>Oppgave {props.number}</strong>} cover={props.cover}>
       {showTask ? (
         <TaskView task={props} />
       ) : (

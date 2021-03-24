@@ -1,12 +1,14 @@
 .header {
 
     background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 
 .layout {
-    background-image: url(../../assets/bg.jpg);
+    background-image: url(../../assets/bg.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
     min-height: 100vh;
     font-size: calc(10px + 1vmin);
     color: white;
@@ -26,11 +28,10 @@
 
 .rainbow {
     text-align: center;
-    text-decoration: underline;
     font-size: 32px;
     font-family: monospace;
     letter-spacing: 5px;
-    background: linear-gradient(to right, #ECC000, #62B7BE , #00ff00, #ff3399);
+    background: linear-gradient(to right, #ECC000, #62B7BE , #00ff00);
     -webkit-background-clip: text;
     -webkit-text-stroke-width: 1px;
     color: transparent;

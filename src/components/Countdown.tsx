@@ -22,29 +22,31 @@ const Countdown: React.FC<ICountdown> = ({ readyCallback }) => {
   readyCallback(timeDifference() <= 0);
 
   React.useEffect(() => {
-    const interval = setInterval(() => {
-      setTimeLeft(calculateTimeLeft);
-    }, 1000);
-    return () => clearInterval(interval);
+    //TODO Activate interval
+    // const interval = setInterval(() => {
+    setTimeLeft(calculateTimeLeft);
+    // }, 1000);
+    // return () => clearInterval(interval);
   }, []);
 
   if (!timeLeft) return <Loading />;
 
   return (
     <Alert
-      message={
+      message={"Er du klar for den store påskejakten?"}
+      description={
         <div>
-          Der er{" "}
-          {timeLeft &&
-            Object.keys(timeLeft).map((key) => (
-              <span key={key}>
-                {timeLeft[key]} {key}{" "}
-              </span>
-            ))}
-          igjen!
+          <strong>Nedtelling</strong>
+          <ul>
+            {timeLeft &&
+              Object.keys(timeLeft).map((key) => (
+                <li key={key}>
+                  {timeLeft[key]} {key}
+                </li>
+              ))}
+          </ul>
         </div>
       }
-      description="Er du klar for den store påskejakten?"
       type="info"
       showIcon
     />

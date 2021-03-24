@@ -1,14 +1,15 @@
 import React from "react";
 import TaskRenderer from "../TaskRenderer/TaskRenderer";
+import ruby from "../../../assets/tasks/ruby.jpg";
 
 const Task3: React.FC = () => {
   const task = () => (
     <div>
-      <p> Skriv Erlend</p>
+      <p>Hvilken farge har en rubin?</p>
     </div>
   );
 
-  const correct = "Erlend";
+  const correct = "rød";
 
   return (
     <TaskRenderer
@@ -16,7 +17,8 @@ const Task3: React.FC = () => {
       taskInfo={task()}
       correctAnswer={correct}
       location={{ lat: 58.183250300000005, lng: 8.0929092 }}
-      mapHint={"Vaffelbua"}
+      mapHint={"Ingen hint!"}
+      cover={<img src={ruby} alt={"Oppgave bilde"} />}
     />
   );
 };
