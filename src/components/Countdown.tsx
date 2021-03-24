@@ -22,11 +22,10 @@ const Countdown: React.FC<ICountdown> = ({ readyCallback }) => {
   readyCallback(timeDifference() <= 0);
 
   React.useEffect(() => {
-    //TODO Activate interval
-    // const interval = setInterval(() => {
-    setTimeLeft(calculateTimeLeft);
-    // }, 1000);
-    // return () => clearInterval(interval);
+    const interval = setInterval(() => {
+      setTimeLeft(calculateTimeLeft);
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
 
   if (!timeLeft) return <Loading />;
