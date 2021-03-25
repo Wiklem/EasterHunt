@@ -1,6 +1,6 @@
 import React from "react";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
-import API from "../../api/keys";
+import API from "../../utils/keys";
 
 interface IMap {}
 const Map: React.FC<IMap> = ({ children }) => {

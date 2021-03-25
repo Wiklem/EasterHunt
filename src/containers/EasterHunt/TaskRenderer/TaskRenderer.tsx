@@ -1,5 +1,5 @@
 import React from "react";
-import { ITask } from "../../../api/types";
+import { ITask } from "../../../utils/types";
 import Map from "../../../components/Map/Map";
 import MapDistance from "../../../components/Map/MapDistance";
 import MapInfo from "../../../components/Map/MapInfo";

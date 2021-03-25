@@ -1,7 +1,7 @@
 import React from "react";
 import { EasterContext } from "../EasterContext";
 import { DistanceMatrixService } from "@react-google-maps/api";
-import { ITask } from "../../api/types";
+import { ITask } from "../../utils/types";
 
 interface IMapDistance {
   location: ITask["location"];

@@ -1,7 +1,7 @@
 import React from "react";
 import { Alert, Button, Input, Radio } from "antd";
 import { EasterContext } from "../../../components/EasterContext";
-import { ITask } from "../../../api/types";
+import { ITask } from "../../../utils/types";
 import styles from "./TaskView.module.css";
 
 interface ITaskView {
