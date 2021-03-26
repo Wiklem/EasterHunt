@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Layout.module.css";
-import { Avatar, Button } from "antd";
+import { Button, PageHeader } from "antd";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { LoginOutlined, LogoutOutlined } from "@ant-design/icons";
@@ -12,15 +12,15 @@ const Header: React.FC<IHeader> = () => {
   const { user, signIn, signOut } = React.useContext(AuthContext);
   return (
     <div className={styles.header}>
-      <div className={styles.headerContent}>
-        <div className={styles.headerItem}>
-          <Avatar src={logo} />
-        </div>
-        <Link to={"/"}>
-          <h1 className={styles.rainbow}>Påskejakten</h1>
-        </Link>
-        <div className={styles.headerItem}>
-          {user ? (
+      <PageHeader
+        title={
+          <Link to={"/"}>
+            <span className={styles.rainbow}>Påskejakten</span>
+          </Link>
+        }
+        avatar={{ src: logo, shape: "square" }}
+        extra={
+          user ? (
             <>
               <Link to={"/administrer"}>
                 <Button icon={<LogoutOutlined />}>Mine påskejakter</Button>
@@ -33,9 +33,9 @@ const Header: React.FC<IHeader> = () => {
             <Button icon={<LoginOutlined />} onClick={signIn}>
               Logg inn
             </Button>
-          )}
-        </div>
-      </div>
+          )
+        }
+      />
     </div>
   );
 };
