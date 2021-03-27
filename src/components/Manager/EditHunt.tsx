@@ -95,7 +95,7 @@ const EditHunt: React.FC<IEditHunt> = ({ hunt, back }) => {
           <Button onClick={() => updateHunt()}>Lagre</Button>,
         ]}
       >
-        <Form labelCol={{ span: 2 }} layout="horizontal">
+        <Form layout="vertical">
           <Form.Item
             label="Name"
             tooltip={"Navnet som skal vises for påskejakten"}

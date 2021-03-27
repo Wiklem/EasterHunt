@@ -4,7 +4,7 @@ import { customAlphabet } from "nanoid";
 
 admin.initializeApp();
 const db = admin.firestore();
-
+db.settings({ ignoreUndefinedProperties: true });
 const cors = require("cors")({ origin: true });
 
 const createId = customAlphabet("abcdefghijklmnopqrstuvwxyz", 6);
