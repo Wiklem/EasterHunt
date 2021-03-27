@@ -10,7 +10,7 @@ const Landingpage: React.FC = () => {
 
   return (
     <>
-      <Card title={"Påskejakt kode"} style={{ width: 300 }}>
+      <Card title={"Velkommen til påskejakten!"} style={{ width: 300 }}>
         <Form layout="vertical">
           <Form.Item
             label="Påskejakt kode"
