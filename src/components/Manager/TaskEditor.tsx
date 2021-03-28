@@ -1,12 +1,8 @@
 import React from "react";
 import { ILocation, ITask } from "../../utils/types";
-import { Button, Card, Radio, Form, Input, Tooltip } from "antd";
+import { Button, Card, Radio, Form, Input } from "antd";
 import Loading from "../Loading";
-import {
-  CheckCircleTwoTone,
-  DeleteOutlined,
-  FrownTwoTone,
-} from "@ant-design/icons";
+import { CheckCircleTwoTone, DeleteOutlined } from "@ant-design/icons";
 import MapComponent from "../Map/MapComponent";
 import EggMarker from "../Map/EggMarker";
 import WriteData from "../../api/writeData";
@@ -14,6 +10,7 @@ import ViewPosition from "../EasterHunt/ViewPosition";
 import TaskImageEditor from "./TaskImageEditor";
 import GetData from "../../api/getData";
 import Error from "../Error";
+import IsTaskReady from "./IsTaskReady";
 const { Search } = Input;
 
 interface ITaskEditor {
@@ -41,7 +38,6 @@ const TaskEditor: React.FC<ITaskEditor> = ({
   const reload = () => setReloadKey(Date.now);
 
   const [selectPosition, setSelectPosition] = React.useState(false);
-  const [ready, setReady] = React.useState(false);
 
   React.useEffect(() => {
     if (taskId) {
@@ -50,7 +46,6 @@ const TaskEditor: React.FC<ITaskEditor> = ({
         .then((data: any) => {
           setOriginTask(data);
           setTask(data);
-          setReady(checkReady(data));
         })
         .catch(() => {
           setError(true);
@@ -59,6 +54,7 @@ const TaskEditor: React.FC<ITaskEditor> = ({
     }
   }, [taskId, reloadKey]);
 
+  console.log(task && task.alternatives);
   const handleChange = (e: any) => {
     const target = e.target;
     const value = target.value;
@@ -66,22 +62,6 @@ const TaskEditor: React.FC<ITaskEditor> = ({
 
     //@ts-ignore
     setTask({ ...task, [name]: value });
-  };
-
-  const checkReady = (task: ITask): boolean => {
-    if (!task) return false;
-    console.log("Sjekker");
-    const check = task.correct !== undefined && task.description !== undefined;
-    if (task.type === "flervalg" && check) {
-      if (task.alternatives && task.alternatives.length) {
-        return true;
-      }
-    } else if (task.type) {
-      return true;
-    } else {
-      return false;
-    }
-    return false;
   };
 
   const positionCallback = (position: ILocation) => {
@@ -100,8 +80,9 @@ const TaskEditor: React.FC<ITaskEditor> = ({
   };
 
   const addAlternative = (value: string) => {
-    let newAlternatives =
-      (task && task.alternatives && task.alternatives.concat(value)) || [];
+    let newAlternatives = (task &&
+      task.alternatives &&
+      task.alternatives.concat(value)) || [value];
     //@ts-ignore
     setTask({ ...task, alternatives: newAlternatives });
   };
@@ -132,7 +113,6 @@ const TaskEditor: React.FC<ITaskEditor> = ({
       <>
         <br />
         <Button
-          block
           type={"primary"}
           // @ts-ignore
           onClick={() => saveTaskData({ [key]: task[key] })}
@@ -219,26 +199,31 @@ const TaskEditor: React.FC<ITaskEditor> = ({
                 }}
               />
 
-              {task.alternatives &&
-                task.alternatives.map((a) => (
-                  <div>
-                    {task.correct !== a && (
-                      <Button onClick={() => removeAlternative(a)}>
-                        <DeleteOutlined />
-                      </Button>
-                    )}
+              {task.alternatives && (
+                <div>
+                  Trykk på riktig alternativ som er riktig for å sette riktig
+                  svar.
+                  {task.alternatives.map((a) => (
+                    <div style={{ padding: "10px" }}>
+                      {task.correct !== a && (
+                        <Button onClick={() => removeAlternative(a)}>
+                          <DeleteOutlined />
+                        </Button>
+                      )}
 
-                    <Button onClick={() => setTask({ ...task, correct: a })}>
-                      {a}
-                    </Button>
-                    {task.correct === a && (
-                      <>
-                        <CheckCircleTwoTone twoToneColor="#52c41a" /> Valgt som
-                        riktig svar{" "}
-                      </>
-                    )}
-                  </div>
-                ))}
+                      <Button onClick={() => setTask({ ...task, correct: a })}>
+                        {a}
+                      </Button>
+                      {task.correct === a && (
+                        <span style={{ marginLeft: "10px" }}>
+                          <CheckCircleTwoTone twoToneColor="#52c41a" /> Valgt
+                          som riktig svar{" "}
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              )}
               {!alternativeEqual() && (
                 <>
                   <br />
@@ -293,17 +278,7 @@ const TaskEditor: React.FC<ITaskEditor> = ({
   return (
     <Card
       title={"Oppgave info"}
-      extra={
-        ready ? (
-          <Tooltip title="Oppgaven er klar">
-            <CheckCircleTwoTone twoToneColor="#52c41a" />
-          </Tooltip>
-        ) : (
-          <Tooltip title="Oppgaven er ufulstendig og vil ikke vises i jakten">
-            <FrownTwoTone twoToneColor={"red"} />
-          </Tooltip>
-        )
-      }
+      extra={<IsTaskReady task={task} />}
       actions={[
         <Button danger onClick={() => deleteTask(task.taskId)}>
           Slett oppgave

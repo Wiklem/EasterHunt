@@ -1,5 +1,5 @@
 import * as React from "react";
-import { PageHeader, Tabs } from "antd";
+import { Button, message, PageHeader, Tabs } from "antd";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
 import GetData from "../../api/getData";
@@ -8,6 +8,7 @@ import Loading from "../Loading";
 import Error from "../Error";
 import HuntEditor from "./HuntEditor";
 import ManageTasks from "./ManageTasks";
+import { ShareAltOutlined } from "@ant-design/icons";
 
 const { TabPane } = Tabs;
 interface IManageHunt {
@@ -44,6 +45,20 @@ const ManageHunt: React.FC<IManageHunt> = ({ huntId }) => {
         style={{ backgroundColor: "white", paddingTop: 0 }}
         onBack={() => history.push("/administrer")}
         title={data.name}
+        extra={[
+          <Button
+            key="list-loadmore-edit"
+            icon={<ShareAltOutlined />}
+            onClick={() => {
+              message.success("Lenke til jakt kopiert");
+              navigator.clipboard.writeText(
+                "https://påskejakten.no/jakt/" + huntId
+              );
+            }}
+          >
+            Kopier lenke til påskejakt
+          </Button>,
+        ]}
         subTitle={
           <>
             <br />
@@ -55,7 +70,13 @@ const ManageHunt: React.FC<IManageHunt> = ({ huntId }) => {
           </>
         }
       />
-      <Tabs defaultActiveKey="1">
+
+      <Tabs
+        defaultActiveKey="1"
+        style={{ background: "white" }}
+        type="card"
+        centered
+      >
         <TabPane tab="Endre Jakt" key="1">
           <HuntEditor hunt={data} reload={() => reload()} />
         </TabPane>

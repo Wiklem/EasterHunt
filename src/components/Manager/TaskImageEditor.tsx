@@ -28,18 +28,16 @@ const TaskImageEditor: React.FC<ITaskImageEditor> = ({
     }
   };
 
-  if (loading) return <Loading />;
-
   return (
     <div>
-      <Image src={image} />
+      {loading ? <Loading /> : <Image src={image} />}
       <br />
       <Upload
         onChange={handleChange}
         beforeUpload={(file) => {
           const isImage = file.type.indexOf("image/") === 0;
           if (!isImage) {
-            message.error("You can only upload image file!");
+            message.error("Du kan bare laste opp bildefiler!");
           }
 
           // You can remove this validation if you want
@@ -52,11 +50,11 @@ const TaskImageEditor: React.FC<ITaskImageEditor> = ({
         maxCount={1}
         customRequest={async ({ onError, onSuccess, file }) => {
           try {
-            const image = await Storage.uploadImage(huntId, taskId, file);
-            const imageUrl = await image.ref.getDownloadURL();
+            const newImage = await Storage.uploadImage(huntId, taskId, file);
+            const imageUrl = await newImage.ref.getDownloadURL();
             setImage(imageUrl);
             //@ts-ignore
-            onSuccess(null, image);
+            onSuccess(null, newImage);
           } catch (e) {
             onError && onError(e);
           }

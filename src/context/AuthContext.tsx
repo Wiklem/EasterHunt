@@ -42,7 +42,6 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const signInWIthFacebook = async () => {
     await auth.signInWithPopup(facebookAuthProvider).then((res) => {
-      console.log(res);
       if (res.user) {
         setName(res.user.displayName);
         setEmail(res.user.email);

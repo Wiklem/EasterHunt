@@ -1,5 +1,6 @@
 import React from "react";
 import { Alert, Button, Input, Modal } from "antd";
+import { Link } from "react-router-dom";
 import WriteData from "../../api/writeData";
 
 interface INewHunt {
@@ -32,9 +33,15 @@ const NewHunt: React.FC<INewHunt> = ({ id, reload }) => {
 
   return (
     <div>
-      <Button type={"primary"} onClick={() => setIsModalVisible(true)}>
-        Opprett en ny påskejakt
-      </Button>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <Button type={"primary"} onClick={() => setIsModalVisible(true)}>
+          Opprett en ny påskejakt
+        </Button>
+        <Link to={"/kontakt"}>
+          <Button>Kontakt Påskejakten.no</Button>
+        </Link>
+      </div>
+
       <Modal
         title="Opprett ny påskejakt"
         visible={isModalVisible}

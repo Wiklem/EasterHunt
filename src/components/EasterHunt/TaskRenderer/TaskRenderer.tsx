@@ -56,7 +56,7 @@ const TaskRenderer: React.FC<ITaskRenderer> = ({ taskKey, task, nextStep }) => {
   return (
     <Card
       title={<strong>Oppgave {taskKey + 1}</strong>}
-      cover={<img alt="taskImage" src={task.image} />}
+      cover={task.image && <img alt="taskImage" src={task.image} />}
     >
       {showTask || !task.location ? (
         <TaskView task={task} nextStep={nextStep} />
