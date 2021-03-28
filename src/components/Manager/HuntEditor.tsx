@@ -33,7 +33,6 @@ const HuntEditor: React.FC<IEditHunt> = ({ hunt, back }) => {
 
   const [data, setData] = React.useState<Array<ITask>>();
   const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState(false);
   const [reloadKey, setReloadKey] = React.useState(Date.now());
   const reload = () => setReloadKey(Date.now);
 
@@ -67,14 +66,10 @@ const HuntEditor: React.FC<IEditHunt> = ({ hunt, back }) => {
       setLoading(true);
       GetData.getTasks(hunt.huntId)
         .then((data: any) => setData(data))
-        .catch(() => {
-          setError(true);
-        })
         .finally(() => setLoading(false));
     }
   }, [hunt.huntId, reloadKey]);
 
-  console.log(activeDate);
   return (
     <div>
       <PageHeader
@@ -83,6 +78,7 @@ const HuntEditor: React.FC<IEditHunt> = ({ hunt, back }) => {
         title={name}
         subTitle={
           <>
+            <br />
             <span>Opprettet: {moment(hunt.date).format("DD.MM.YYYY")}</span>
             <br />
             <span>

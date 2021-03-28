@@ -55,7 +55,6 @@ const deleteTask = (taskId: string) =>
   db.collection("tasks").doc(taskId).delete();
 
 const updateTask = (taskId: string, data: ITask) => {
-  console.log(data);
   return db.collection("tasks").doc(taskId).set(data, { merge: true });
 };
 

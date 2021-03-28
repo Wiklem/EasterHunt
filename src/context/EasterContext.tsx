@@ -41,7 +41,7 @@ const EasterContextProvider: React.FC = ({ children }) => {
     navigator.geolocation.getCurrentPosition(success);
     // }, 1000);
     // return () => clearInterval(interval);
-  }, []);
+  }, [step]);
 
   if (!currentPosition || !step) return <Loading />;
   return (
