@@ -37,7 +37,7 @@ const MapComponent: React.FC<IMapComponent> = ({
     <GoogleMap
       mapContainerStyle={mapContainer}
       zoom={15}
-      center={currentPosition || defaultCenter}
+      center={defaultCenter}
       onClick={(e) =>
         locationCallback &&
         locationCallback({ lat: e.latLng.lat(), lng: e.latLng.lng() })
