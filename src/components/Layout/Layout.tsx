@@ -7,7 +7,6 @@ import Header from "./Header";
 import Manager from "../../routes/Manager";
 import Hunt from "../../routes/Hunt";
 import EasterContextProvider from "../../context/EasterContext";
-import Help from "../../routes/Help";
 import { Col, Row } from "antd";
 import Login from "../../routes/Login";
 import Privacy from "../../routes/Privacy";
@@ -44,9 +43,6 @@ const Layout: React.FC<ILayout> = () => {
                     <EasterContextProvider>
                       <Hunt />
                     </EasterContextProvider>
-                  </Route>
-                  <Route path={"/hjelp"}>
-                    <Help />
                   </Route>
                   <Route path={"/privacy"}>
                     <Privacy />

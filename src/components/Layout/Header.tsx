@@ -5,10 +5,11 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { EditOutlined, LoginOutlined, LogoutOutlined } from "@ant-design/icons";
 import { AuthContext } from "../../context/AuthContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 const Header: React.FC = () => {
   const location = useLocation();
+  let history = useHistory();
   const { uid, signOut } = React.useContext(AuthContext);
 
   if (location.pathname.includes("/jakt/")) return null;
@@ -27,13 +28,19 @@ const Header: React.FC = () => {
               <Link to={"/administrer"}>
                 <Button icon={<EditOutlined />}>Mine påskejakter</Button>
               </Link>
-              <Button icon={<LogoutOutlined />} onClick={signOut}>
+              <Button
+                icon={<LogoutOutlined />}
+                onClick={() => {
+                  signOut();
+                  history.push("/");
+                }}
+              >
                 Logg ut
               </Button>
             </>
           ) : (
             <Link to={"/login"}>
-              <Button icon={<LoginOutlined />}>Administrer påskejakt</Button>
+              <Button icon={<LoginOutlined />}>Log inn/opprett jakt</Button>
             </Link>
           )
         }
