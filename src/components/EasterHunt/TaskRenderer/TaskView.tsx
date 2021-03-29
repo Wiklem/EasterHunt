@@ -7,11 +7,27 @@ interface ITaskView {
   task: ITask;
   nextStep?: () => void;
 }
+
 const TaskView: React.FC<ITaskView> = ({ task, nextStep }) => {
   const [answer, setAnswer] = React.useState<string | undefined>(undefined);
   const correctView = () => (
     <div className={styles.answerLabel}>
-      <Alert message={answer + " er riktig"} type="success" showIcon />
+      <Alert
+        message={
+          <div>
+            {answer + " er riktig"}
+            {task.correctExtraText && (
+              <div>
+                <br />
+                <strong>{task.correctExtraText}</strong>
+              </div>
+            )}
+          </div>
+        }
+        type="success"
+        showIcon
+      />
+
       {nextStep && (
         <div>
           <Button

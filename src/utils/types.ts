@@ -13,6 +13,7 @@ export interface ITask {
   alternatives?: Array<string>;
   image: string;
   date: string;
+  correctExtraText: string;
 }
 
 export interface IHunt {
