@@ -113,6 +113,7 @@ const TaskEditor: React.FC<ITaskEditor> = ({
         <br />
         <Button
           type={"primary"}
+          block
           // @ts-ignore
           onClick={() => saveTaskData({ [key]: task[key] })}
         >
@@ -245,19 +246,21 @@ const TaskEditor: React.FC<ITaskEditor> = ({
             </Form.Item>
           </>
         )}
-        <Form.Item
-          label="Ekstra melding ved riktig svar"
-          tooltip={
-            "Her kan du legge inn en beskjed som kommer opp når man har skrevet inn riktig svar."
-          }
-        >
-          <Input
-            name={"correctExtraText"}
-            value={task.correctExtraText || ""}
-            onChange={(e) => handleChange(e)}
-          />
-          {saveChangesButton("correctExtraText")}
-        </Form.Item>
+        {originTask && originTask.correct && (
+          <Form.Item
+            label="Ekstra melding ved riktig svar"
+            tooltip={
+              "Her kan du legge inn en beskjed som kommer opp når man har skrevet inn riktig svar."
+            }
+          >
+            <Input
+              name={"correctExtraText"}
+              value={task.correctExtraText || ""}
+              onChange={(e) => handleChange(e)}
+            />
+            {saveChangesButton("correctExtraText")}
+          </Form.Item>
+        )}
 
         <hr />
         <Form.Item
