@@ -59,8 +59,13 @@ const Layout: React.FC<ILayout> = () => {
             <Col xs={1} md={2} xl={4} />
           </Row>
           <div className={styles.footer}>
-            <Link to={"/"}>Påskejakten.no</Link> - Copyright © Wiklem.no. All
-            Rights Reserved
+            <Link
+              style={{ color: "white", textDecoration: "underline" }}
+              to={"/"}
+            >
+              Påskejakten.no
+            </Link>{" "}
+            - Copyright © Wiklem.no. All Rights Reserved
           </div>
         </div>
       </Router>
