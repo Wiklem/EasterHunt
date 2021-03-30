@@ -73,7 +73,6 @@ const Landingpage: React.FC = () => {
       </Card>
       <br />
       <Alert type={"info"} message={message} />
-
       <img className={styles.easterEgg} src={logo} alt="logo" />
     </>
   );

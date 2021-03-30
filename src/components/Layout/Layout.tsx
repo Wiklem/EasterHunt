@@ -11,7 +11,7 @@ import { Col, Row } from "antd";
 import Login from "../../routes/Login";
 import Privacy from "../../routes/Privacy";
 import Contact from "../../routes/Contact";
-import { Link } from "react-router-dom";
+import Footer from "./Footer";
 
 interface ILayout {}
 
@@ -58,15 +58,7 @@ const Layout: React.FC<ILayout> = () => {
             </Col>
             <Col xs={1} md={2} xl={4} />
           </Row>
-          <div className={styles.footer}>
-            <Link
-              style={{ color: "white", textDecoration: "underline" }}
-              to={"/"}
-            >
-              Påskejakten.no
-            </Link>{" "}
-            - Copyright © Wiklem.no. All Rights Reserved
-          </div>
+          <Footer />
         </div>
       </Router>
     </AuthProvider>
